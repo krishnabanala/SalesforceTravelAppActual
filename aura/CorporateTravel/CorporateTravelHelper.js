@@ -9,6 +9,7 @@
                 var lstTravelReq = component.get('v.lstTravelRequests');
                 console.log('>>>>>>>>>>>>>>>>>>>>>>> lstTravelReq : ' + lstTravelReq);
                 //debugger;
+                //debugger;
             }
             else if (state === "ERROR") {
                 debugger;
@@ -34,7 +35,6 @@
                 component.set('v.lstApprovals', response.getReturnValue());
                 var lstApprovals = component.get('v.lstApprovals');
                 console.log('>>>>>>>>>>>>>>>>>>>>>>> lstApprovals : ' + lstApprovals);
-                //debugger;
             }
             else if (state === "ERROR") {
                 debugger;
