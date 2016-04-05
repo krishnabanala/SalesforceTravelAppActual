@@ -1,5 +1,6 @@
 ({
     getTravelRequestsHelper : function(component) {
+        console.log('>>>>>>>>>>>>>>>>>>>');    
         var action = component.get("c.getTravelRequests");	
         action.setCallback(this, function(response) {
             var state = response.getState();
