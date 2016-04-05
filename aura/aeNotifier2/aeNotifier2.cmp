@@ -1,0 +1,9 @@
+<!--docsample:aeNotifier-->
+<aura:component >
+    <aura:registerEvent name="editTravelReqNm" type="c:EditTravelReq"/>
+
+    <h1>Simple Application Event Sample</h1>
+    <p><ui:button label="Click here to fire an application event"
+        press="{!c.fireApplicationEvent}" />
+    </p>
+</aura:component>

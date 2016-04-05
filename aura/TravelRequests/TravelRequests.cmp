@@ -1,0 +1,75 @@
+<aura:component controller="RequestFormController">
+    <aura:attribute name="TravelRequestObj" type="Travel_Request__c"/>
+    <aura:attribute name="displayMsg" type="String" default="msgFalse"/> 
+    <aura:registerEvent name="EditTravelReq" type="c:EditTravelReq"/>
+    <aura:registerEvent name="ApprovalSubmittedEvt" type="c:ApprovalSubmittedEvt"/>
+    <aura:registerEvent name="ErrorEvt" type="c:ErrorEvt"/>
+    <li class="slds-list__item" id="travelReqRecId">
+        <div class="slds-tile slds-tile--board">
+            <aura:if isTrue="{!v.displayMsg == 'msgTrue'}">
+                <ui:message title="Success !!!" severity="info" closable="true">
+                    Record has been submitted for approval
+                </ui:message>
+                <aura:set attribute="else">
+                    <div class="slds-media slds-tile slds-hint-parent">
+                <div class="slds-media__figure">
+                    <c:svg class="slds-icon slds-icon-standard-contact" xlinkHref="/resource/slds0120/assets/icons/standard-sprite/svg/symbols.svg#contact" />                          
+                </div>
+                <div class="slds-media__body">
+                    <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                        <p class="slds-tile__title slds-truncate">$<ui:outputNumber value="{!v.TravelRequestObj.Expected_Revenue__c}" format=".00"/></p>
+                        
+                        <div class="slds-dropdown-trigger">
+                            <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none" aria-haspopup="true">
+                                <c:svg class="slds-button__icon slds-button__icon--hint slds-button__icon--small"  
+                                       xlinkHref="/resource/slds0120/assets/icons/utility-sprite/svg/symbols.svg#down" />  															
+                                <span class="slds-assistive-text">Show More</span>
+                            </button>
+                            <div class="slds-dropdown slds-dropdown--right slds-dropdown--actions slds-dropdown--menu">
+                                <ul class="slds-dropdown__list" role="menu">
+                                    <li id="menu-34-0" href="#" class="slds-dropdown__item">
+                                        <a href="javascript:void(0)" role="menuitem">
+                                            <p class="slds-truncate" onclick="{!c.editTravelReqCtrl}" id="{!v.TravelRequestObj.Id}">Edit</p>
+                                        </a>
+                                    </li>
+                                    <li id="menu-35-1" href="#" class="slds-dropdown__item">
+                                        <a href="javascript:void(0)" role="menuitem">
+                                            <p class="slds-truncate" onclick="{!c.submitApprovTravelReqCtrl}" id="{!v.TravelRequestObj.Id}">Submit For Approval</p>
+                                        </a>
+                                    </li>															 
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="slds-tile__detail">
+                        <dl class="dl--horizontal slds-text-body--small">
+                            <dt class="slds-dl--horizontal__label">
+                                <p class="slds-truncate">From:</p>
+                            </dt>
+                            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                                <p class="slds-truncate">{!v.TravelRequestObj.Source__r.Name}</p>
+                            </dd>
+                            <dt class="slds-dl--horizontal__label">
+                                <p class="slds-truncate">To:</p>
+                            </dt>
+                            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                                <p class="slds-truncate">{!v.TravelRequestObj.Destination__r.Name}</p>
+                            </dd>
+                            <dt class="slds-dl--horizontal__label">
+                                <p class="slds-truncate">Status:</p>
+                            </dt>
+                            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                                <p class="slds-truncate">{!v.TravelRequestObj.Status__c}</p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+                </aura:set>
+            </aura:if> 
+            
+        </div>
+    </li>
+</aura:component>

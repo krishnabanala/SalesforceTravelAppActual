@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+    <!-- If you’re using a namespace, use myNamespace.Expense__c instead. -->
+    <aura:attribute name="travelReqId" type="String"/>
+</aura:event>

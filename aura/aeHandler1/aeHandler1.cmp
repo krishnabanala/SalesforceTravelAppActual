@@ -1,0 +1,98 @@
+<!--docsample:aeHandler-->
+<aura:component controller="RequestFormController">
+    <aura:attribute name="messageFromEvent" type="String"/>
+    <aura:attribute name="numEvents" type="Integer" default="0"/>
+    <aura:attribute name="travelReqId" type="String" default="None"/>
+    <aura:attribute name="displayMsg" type="String" default="msgFalse"/> 
+    <aura:attribute name="newTravelRequest" type="Travel_Request__c"
+                    default="{ 'sobjectType': 'Travel_Request__c',
+                             'Travel_Type__c': 'National',
+                             'Travel_By__c': 'Bus', 
+                             'Travel_Date__c': '',
+                             'Source__r.Name': '',
+                             'Destination__r.Name': '',
+                             'Expected_Revenue__c': 0.0
+                             }"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:handler event="c:EditTravelReq" action="{!c.editTravelReqCtrl}"/>
+    
+    <div class="container">
+        <aura:if isTrue="{!v.displayMsg == 'msgTrue'}">
+            <ui:message title="Success !!!" severity="info" closable="true">
+                Record has been saved successfully
+            </ui:message>
+            <aura:set attribute="else">
+                <div></div>
+            </aura:set>
+        </aura:if> 
+        
+        <form class="slds-form--stacked">
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="travelTypeId">Travel Type</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect aura:id="travelTypeId" 
+                                    labelClass="slds-form-element__label" 
+                                    class="slds-select" value="{!v.newTravelRequest.Travel_Type__c}"/>
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="travelById">Travel By</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect aura:id="travelById" class="slds-select" value="{!v.newTravelRequest.Travel_By__c}"/>
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="travelDateId">Travel Date</label>
+                <div class="slds-form-element__control">
+                    <ui:inputDateTime aura:id="travelDateId"  
+                                      class="form-control slds-input" 
+                                      value="{!v.newTravelRequest.Travel_Date__c}" displayDatePicker="true" />
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="sourceId">Source</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect aura:id="sourceId" class="slds-select" value="{!v.newTravelRequest.Source__r.Name}"/>
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="destinationId">Destination</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect aura:id="destinationId" class="slds-select" value="{!v.newTravelRequest.Destination__r.Name}"/>
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-is-required">
+                <label class="slds-form-element__label" for="expRevId">Expected Revenue</label>
+                <div class="slds-form-element__control">
+                    <ui:inputNumber aura:id="expRevId"
+                                    class="slds-input"
+                                    labelClass="slds-form-element__label"
+                                    value="{!v.newTravelRequest.Expected_Revenue__c}"
+                                    placeholder="20.80" required="true"/>
+                </div>
+            </div>
+            
+            <div class="slds-form-element">
+                <ui:button label="Save" 
+                           class="slds-button slds-button--neutral"
+                           labelClass="label"
+                           press="{!c.saveTravelRequestCtrl}"/>
+                <ui:button label="Submit For Approval" 
+                           class="slds-button slds-button--neutral"
+                           labelClass="label"
+                           press="{!c.submitForApproval}"/>
+                <ui:button label="Cancel" 
+                           class="slds-button slds-button--neutral"
+                           labelClass="label"
+                           press="{!c.cancelTravelRequest}"/>
+            </div>
+        </form>
+    </div>
+    
+    
+</aura:component>
