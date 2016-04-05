@@ -1,5 +1,6 @@
 ({ 	
     doInit : function(component, event, helper) { 
+        //Sample Comment1 From cloud9   
         helper.getTravelRequestsHelper(component);
         //helper.getApprovalRequestsHelper(component);
     },
